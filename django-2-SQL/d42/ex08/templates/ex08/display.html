@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex08</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    {% if people %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Climate</th>
+            <th>Home world</th>
+        </tr>
+        {% for humen in people %}
+        <tr>
+            {% for item in humen %}
+            <td>{{ item|default_if_none:'' }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No data available</p>
+    {% endif %}
+</body>
+</html>

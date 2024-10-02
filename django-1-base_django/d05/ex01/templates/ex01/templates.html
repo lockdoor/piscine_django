@@ -1,0 +1,60 @@
+{% extends 'ex01/base.html' %}
+{% load static %}
+
+{% block title %}
+	<title>
+		Ex01: Template engine.
+	</title>
+{% endblock %}
+
+{% block style %}
+<link rel="stylesheet" href="{% static 'ex01/style2.css'%}">  
+{% endblock %}
+
+{% block content%}
+    <h1>Ex01: Template engine.</h1>
+
+    <p>Django’s default template engine is designed to separate logic from presentation. It allows developers to insert dynamic content into HTML templates and control the rendering of that content using template tags and filters.</p>
+
+    <h2>Key Features</h2>
+
+    <h3>1. Blocks</h3>
+    <p>Blocks are used in templates to define sections that can be overridden in child templates when using template inheritance (i.e., extending a base template). A block is defined using <code>&#123;&#37; block block_name &#37;&#125; ... &#123;&#37; endblock &#37;&#125;</code>.</p>
+    <pre><code>&lt;body&gt;
+  &#123;&#37; block content &#37;&#125;
+  &lt;!-- Content will be injected here by child templates --&gt;
+  &#123;&#37; endblock &#37;&#125;
+&lt;/body&gt;
+    </code></pre>
+
+    <h3>2. Loops (for ... in)</h3>
+    <p>Django templates support the <code>for</code> loop to iterate over a list or any iterable object. This is useful for rendering lists of items, such as displaying a list of blog posts or products.</p>
+    <pre><code>&lt;ul&gt;
+  &#123;&#37; for item in items &#37;&#125;
+    &lt;li&gt;&#123;&#123; item.name &#125;&#125;&lt;/li&gt;
+  &#123;&#37; endfor &#37;&#125;
+&lt;/ul&gt;
+    </code></pre>
+
+    <h3>3. If Control Structures</h3>
+    <p>The <code>if</code> tag allows you to implement conditional logic in templates. You can check if a variable is true, false, empty, or compare it to another value.</p>
+    <pre><code>&#123;&#37; if user.is_authenticated &#37;&#125;
+  &lt;p&gt;Welcome, &#123;&#123; user.username &#125;&#125;!&lt;/p&gt;
+&#123;&#37; else &#37;&#125;
+  &lt;p&gt;Please log in.&lt;/p&gt;
+&#123;&#37; endif &#37;&#125;
+    </code></pre>
+
+    <h3>4. Display of Context Variables</h3>
+    <p>Context variables are passed from the view to the template and displayed using double curly braces <code>&#123;&#123; variable_name &#125;&#125;</code>. These can represent any data, such as strings, numbers, lists, or objects.</p>
+    <pre><code>&lt;p&gt;Hello, &#123;&#123; name &#125;&#125;!&lt;/p&gt;
+    </code></pre>
+
+    <h2>Example Workflow</h2>
+    <ol>
+        <li><strong>View:</strong> The view passes context variables (e.g., <code>&#123;'name': 'Alice', 'items': items_list&#125;</code>) to the template.</li>
+        <li><strong>Template:</strong> The template uses blocks, loops, and conditionals to structure the HTML output and dynamically insert the passed context.</li>
+        <li><strong>Rendered Output:</strong> The final rendered HTML is sent to the user's browser, displaying the content based on the context variables and logic defined in the template.</li>
+    </ol>
+
+{% endblock %}

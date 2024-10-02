@@ -1,0 +1,12 @@
+.cache
+.vscode
+*.pdf
+*.sqlite3
+__pycache__
+.DS_Store
+**/migrations/*
+!**/migrations/__init__.py
+*.sql
+*.tar.*
+*.tar
+.env

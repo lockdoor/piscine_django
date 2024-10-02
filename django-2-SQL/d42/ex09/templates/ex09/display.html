@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex08</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    {% if people %}
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Climate</th>
+            <th>Home world</th>
+        </tr>
+        {% for person in people %}
+        <tr>
+            <td>{{ person.id|default_if_none:'' }}</td>
+            <td>{{ person.name|default_if_none:'' }}</td>
+            <td>{{ person.climate|default_if_none:'' }}</td>
+            <td>{{ person.homeworld|default_if_none:'' }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No data available, please use the following command line before use:</p>
+    <code>python3 manage.py loaddata ../d05/ex09_initial_data.json</code>
+    {% endif %}
+</body>
+</html>

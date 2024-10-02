@@ -1,0 +1,12 @@
+{% extends 'tip/base.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<h2 class="text-center">{{title}}</h2>
+<div class="d-flex justify-content-center">
+    <form method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button "Submit" button_type="submit" button_class="btn-primary" %}
+    </form>
+</div>
+{% endblock %}

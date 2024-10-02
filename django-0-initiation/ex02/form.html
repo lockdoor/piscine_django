@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+	<form id="myForm" onsubmit="displayFormContents()">
+		<fieldset>
+			<legend>Form</legend>
+			<div>
+				<label for="firstname">Firstname:</label>
+				<input type="text" id="firstname" name="firstname"/>
+			</div>
+			<div>
+				<label for="name">Name:</label>
+				<input type="text" id="name" name="name" />
+			</div>
+			<div>
+				<label for="age">Age:</label>
+				<input type="number" id="age" name="age"/>
+			</div>
+			<div>
+				<label for="phone">Phone:</label>
+				<input type="tel" id="phone" name="phone"/>
+			</div>
+			<div>
+				<label for="email">Email:</label>
+				<input type="email" id="email" name="email"/>
+			</div>
+			<div>
+				<label for="student">Student at 42?:</label>
+				<input type="checkbox" id="student" name="student"/>
+			</div>
+			<div>
+				<input type="radio" id="gender_male" name="gender" value="Male"/>
+				<label for="gender_male">Male</label>
+				<input type="radio" id="gender_female" name="gender" value="Female"/>
+				<label for="gender_female">Female</label>
+				<input type="radio" id="gender_other" name="gender" value="Other"/>
+				<label for="gender_other">Other</label>
+			</div>
+			<div>
+				<button type="submit">Run that sexy Javascript !</button>
+			</div>
+		</fieldset>
+	</form>
+	<script src="../d00/ex02/popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{% extends 'ex02/base.html' %}
+
+{% block title %}
+<title>history</title>
+{% endblock %}
+
+{% block content %}
+<h1>history</h1>
+<ul>
+    {% for item in history %}
+    <li>{{item}}</li>
+    {% endfor %}
+</ul>
+{% endblock %}

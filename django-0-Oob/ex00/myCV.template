@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Resume {name}</title>
+</head>
+<body>
+	<h1>Resume {name}</title>
+    <p>Name: {name}</p>
+    <p>Sername: {sername}</p>
+    <p>Age: {age}</p>
+    <p>Profession: {profession}</p>
+</body>
+</html>

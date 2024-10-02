@@ -1,0 +1,49 @@
+{% load bootstrap5 %}
+
+<div class="container">
+  {% for tip in tips %}
+  <div class="p-1" id="{{tip.id}}">
+    <p>{{ tip.author }}</p>
+    <p>{{ tip.content }}</p>
+    <div class="d-flex justify-content-between">
+      <small>{{tip.date}}</small>
+      {% if user.is_authenticated %}
+      <small class="d-flex">
+        <form method="post" action="{% url 'remove' %}">
+          {% csrf_token %}
+          <input type="hidden" name="tip_id" value="{{ tip.id }}">
+          <button type="submit" class="btn p-0 border-0 bg-transparent">
+            <i class="bi bi-trash"></i>
+          </button>
+        </form>
+        
+        <form method="post" action="{% url 'vote' %}">
+          {% csrf_token %}
+          <input type="hidden" name="tip_id" value="{{ tip.id }}">
+          <input type="hidden" name="vote_type" value="upvote">
+          <button type="submit" class="btn p-0 border-0 bg-transparent">
+            <i class="bi bi-hand-thumbs-up"></i>
+          </button>
+          <span>{{tip.upvote_count}}</span>
+        </form>
+
+        <form method="post" action="{% url 'vote' %}">
+          {% csrf_token %}
+          <input type="hidden" name="tip_id" value="{{ tip.id }}">
+          <input type="hidden" name="vote_type" value="downvote">
+          <button type="submit" class="btn p-0 border-0 bg-transparent">
+            <i class="bi bi-hand-thumbs-down"></i>
+          </button>
+          <span>{{tip.downvote_count}}</span>
+        </form>
+        
+      </small>
+      {% else %}
+      <small></small>
+      {% endif %}
+    </div>
+  </div>
+  <hr>
+  {% endfor %}
+</div>
+  

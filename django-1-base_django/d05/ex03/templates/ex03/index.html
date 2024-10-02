@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Exercise 03: Fifty shades of bic</title>
+	<style>
+		td, th {
+			width: 80px;
+			height: 40px;
+		}
+		td {
+			text-align: center;
+			color: white;
+		}
+	</style>
+</head>
+<body>
+	<h1>Exercise 03: Fifty shades of bic</h1>
+	<table>
+		<tr>
+			<th>Red</th>
+			<th>Green</th>
+			<th>Blue</th>
+			<th>Black</th>
+		</tr>
+		{% for item in colors %}
+		<tr>
+			<td style="background-color: {{item.red}};">{{item.red}}</td>
+			<td style="background-color: {{item.green}};">{{item.green}}</td>
+			<td style="background-color: {{item.blue}};">{{item.blue}}</td>
+			<td style="background-color: {{item.black}};">{{item.black}}</td>
+		</tr>
+		{% endfor %}
+	</table>
+</body>
+</html>

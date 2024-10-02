@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ex06</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    {% if movies %}
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Director</th>
+            <th>Producer</th>
+            <th>Opening Crawl</th>
+            <th>Release date</th>
+            <th>Created</th>
+            <th>Updated</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            {% for item in movie %}
+            <td>{{ item|default_if_none:'' }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No data available</p>
+    {% endif %}
+</body>
+</html>

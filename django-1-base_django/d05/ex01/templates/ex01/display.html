@@ -1,0 +1,33 @@
+{% extends 'ex01/base.html' %}
+
+{% block title %}
+<title>
+	Ex01: Display process of a static page.
+</title>
+{% endblock %}
+
+{% block content%}
+	<h1>Ex01: Display process of a static page.</h1>
+
+	<p>In Django, the URLs, views, and templates work together to handle web requests and responses:</p>
+	<ol>
+		<li>
+			URLs: Define the patterns for the different pages in your app. In urls.py, you map each URL to a specific view function using the path() function.
+		</li>
+		<li>
+			Views: Views are Python functions (or classes) in views.py that handle the logic for what happens when a user visits a URL. They process requests and return responses, often in the form of rendered HTML.
+		</li>
+		<li>
+			Templates: Templates are HTML files where you define the structure and layout of the web page. Django uses the template engine to dynamically insert content into these HTML files before sending them as a response to the user.
+		</li>
+	</ol>
+
+	<p>Example flow:</p>
+	<ul>
+		<li>URL pattern in urls.py matches a request.</li>
+		<li>Corresponding view in views.py is executed.</li>
+		<li>The view processes data and renders a template with dynamic content.</li>
+	</ul>
+	<p>This allows for a clean separation of logic, structure, and routing in a web application.</p>
+
+{% endblock %}
