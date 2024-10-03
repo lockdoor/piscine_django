@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<article>
+    <h2>{{ article.title }}</h2>
+    <form method="post">
+        <button type="submit">Favourite</button>
+    </form>
+    <p>{{ article.synopsis }}</p>
+    <p>Author: {{ article.author }}</p>
+    <p>Created on: {{ article.created }}</p>
+    <p>{{ article.content }}</p>
+</article>
+{% endblock %}

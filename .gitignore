@@ -10,3 +10,10 @@ __pycache__
 *.tar.*
 *.tar
 .env
+
+django-0-initiation/ex02/popup.js
+django-0-initiation/ex03/style.css
+django-0-initiation/ex04/file1.js
+django-0-initiation/ex04/file2.js
+django-0-initiation/ex04/file3.js
+django-0-initiation/ex04/file4.js
