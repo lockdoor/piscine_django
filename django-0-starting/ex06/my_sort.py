@@ -22,8 +22,9 @@ d = {
 }
 
 def my_func():
-	my_sort = sorted(d.items(), key=lambda item: item[1])
+	my_sort = sorted(d.items(), key=lambda x: (int(x[1]), x[0]))
 	for el in my_sort:
+		# print(f'{el[0]}: {el[1]}')
 		print(el[0])
 
 if __name__ == '__main__':

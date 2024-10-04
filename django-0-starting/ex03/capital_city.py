@@ -19,7 +19,7 @@ def my_func():
 	arg = sys.argv[1]
 	state = states.get(arg)
 	if state is None:
-		print('Unknow state')
+		print('Unknown state')
 	else:
 		print(capital_cities[state])
 

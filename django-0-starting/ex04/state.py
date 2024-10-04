@@ -16,14 +16,8 @@ capital_cities = {
 def my_func():
 	if len(sys.argv) != 2:
 		return
-	arg = sys.argv[1]
-	# for city in capital_cities:
-	# 	if capital_cities[city] == arg:
-	# 		for stage in states:
-	# 			if states[stage] == city:
-	# 				return print(stage)
 	try:
-		idx = list(capital_cities.values()).index(arg)
+		idx = list(capital_cities.values()).index(sys.argv[1])
 		city = list(capital_cities.keys())[idx]
 		idx = list(states.values()).index(city)
 		print(list(states.keys())[idx])

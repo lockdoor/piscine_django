@@ -22,9 +22,9 @@ d = [
 ]
 
 def my_func():
-	my_dict :dict[str] = {}
+	my_dict :dict = {}
 	for el in d:
-		my_dict[int(el[1])] = el[0]
+		my_dict[el[1]] = el[0]
 	for el in my_dict:
 		print (f'{el} : {my_dict[el]}')
 
