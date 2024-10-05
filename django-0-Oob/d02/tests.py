@@ -21,6 +21,7 @@ def test_text():
     assert str(Text('>')) == '&gt;'
     assert str(Text('"')) == '&quot;'
     print('Text behaviour : OK.')
+
     
 def test_elem_basics():
     # Default behaviour :

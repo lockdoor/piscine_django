@@ -25,7 +25,6 @@ class Elem:
 
         Obviously.
         """
-        [...]
         self.tag = tag
         self.attr = attr
         self.tag_type = tag_type
@@ -41,6 +40,7 @@ class Elem:
         Make sure it renders everything (tag, attributes, embedded
         elements...).
         """
+        result = ""
         if self.tag_type == 'double':
             result = f"<{self.tag}{self.__make_attr()}>{self.__make_content()}{(' ' * self.tab * 2) if len(self.content) else ''}</{self.tag}>"
         elif self.tag_type == 'simple':
@@ -67,7 +67,6 @@ class Elem:
         for elem in self.content:
             elem.tab = self.tab + 1
             result += f"{' ' * elem.tab * 2}" +str(elem) + '\n'
-            # print (elem.tab)
         return result
 
     def add_content(self, content):

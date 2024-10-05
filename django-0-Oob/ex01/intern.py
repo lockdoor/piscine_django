@@ -1,6 +1,5 @@
 class Intern():
-	def __init__(self, 
-		name="My name? I’m nobody, an intern, I have no name."):
+	def __init__(self, name="My name? I’m nobody, an intern, I have no name."):
 		self.Name = name
 
 	def work(self):
@@ -25,10 +24,7 @@ def my_func():
 		mark = Intern("Mark")
 		print (mark)
 		print (mark.make_coffee())
-
-		john = Intern("John")
-		print (john)
-		print (john.work())
+		print (mark.work())
 	except Exception as e:
 		print(e)
 	pass
