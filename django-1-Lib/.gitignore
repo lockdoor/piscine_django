@@ -1,0 +1,14 @@
+ex01/local_lib
+ex01/pip-install.log
+ex01/my_dir
+ex02/venv
+ex02/*.wiki
+ex02/test.py
+ex02/init.sh
+
+ex03/venv
+ex03/*.wiki
+
+ex04/django_venv
+
+ex05/venv

@@ -12,18 +12,13 @@ class Text(str):
         """
         Do you really need a comment to understand this method?..
         """
-        return super().__str__()\
-        .replace('<', '&lt;')\
-        .replace('>', '&gt;')\
-        .replace('"', '&quot;')\
-        .replace('\n', '\n<br />\n')
+        return super().__str__().replace('<', '&lt;').replace('>', '&gt;').replace('"', '&quot;').replace('\n', '\n<br />\n')
 
 
 class Elem:
     """
     Elem will permit us to represent our HTML elements.
     """
-
     def __init__(self, tag='div', attr={}, content=None, tag_type='double'):
         """
         __init__() method.
@@ -31,8 +26,12 @@ class Elem:
         Obviously.
         """
         self.tag = tag
+        self.attr = attr
         self.tag_type = tag_type
-        self.content = content
+        self.content = []
+        self.tab = 0
+        if content is not None:
+            self.add_content(content)
 
     def __str__(self):
         """
@@ -43,9 +42,9 @@ class Elem:
         """
         result = ""
         if self.tag_type == 'double':
-            result = f'<{self.tag}>{self.__make_content()}</{self.tag}>'
+            result = f"<{self.tag}{self.__make_attr()}>{self.__make_content()}{(' ' * self.tab * 2) if len(self.content) else ''}</{self.tag}>"
         elif self.tag_type == 'simple':
-            [...]
+            result = f"<{self.tag}{self.__make_attr()} />"
         return result
 
     def __make_attr(self):
@@ -61,14 +60,14 @@ class Elem:
         """
         Here is a method to render the content, including embedded elements.
         """
-        result = ""
-        if self.content is None:
-            pass
-        elif type(self.content) == list:
-            for elem in self.content:
-                result += f"\n{elem}"
-        elif type(self.content) == Text:
-            result = self.content
+
+        if len(self.content) == 0:
+            return ''
+        result = '\n'
+        for elem in self.content:
+            elem.tab = self.tab + 1
+            result += f"{' ' * elem.tab * 2}" +str(elem) + '\n'
+            # print (elem.tab)
         return result
 
     def add_content(self, content):
@@ -78,6 +77,10 @@ class Elem:
             self.content += [elem for elem in content if elem != Text('')]
         elif content != Text(''):
             self.content.append(content)
+
+    class ValidationError(Exception):
+        def __init__(self):
+            super().__init__("Not support content.")
 
     @staticmethod
     def check_type(content):
@@ -90,11 +93,14 @@ class Elem:
                                                 isinstance(elem, Elem)
                                                 for elem in content])))
 
+def test():
+    head = Elem(tag='head')
+    head.add_content(Elem(tag='title', content=Text("'Hello ground!'")))
+    body = Elem(tag='body')
+    body.add_content(Elem(tag='h1', content=Text("'Oh no, not again!'")))
+    body.add_content(Elem(tag='img', attr={'src': "http://i.imgur.com/pfp3T.jpg"}, tag_type='simple'))
+    html = Elem(tag="html", content=[head, body])
+    print (html)
 
 if __name__ == '__main__':
-    # print (str(Elem()))
-    # print (str(Elem('div', {}, None, 'double')))
-    print (str(Elem(tag='body', attr={}, content=Elem(),
-                    tag_type='double')))
-    # print (Elem(tag='body', attr={}, content=Elem(content=Elem()),
-    #                 tag_type='double'))
+    test()
