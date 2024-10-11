@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% comment %}
 {% block content %}
 <h1>Articles</h1>
 <ul>
@@ -16,4 +17,29 @@
     <li>No articles yet.</li>
 {% endfor %}
 </ul>
+{% endblock %}
+{% endcomment %}
+
+{% block content %}
+<h1>Articles</h1>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Synopsis</th>
+        <th>Created</th>
+    </tr>
+    {% for article in object_list %}
+    <tr>
+        <td><a href="{% url 'article:detail' article.pk %}">{{ article.title }}</a></td>
+        <td>{{article.author}}</td>
+        <td>{{article.synopsis}}</td>
+        <td>{{article.created}}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td>No articles yet.</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock %}

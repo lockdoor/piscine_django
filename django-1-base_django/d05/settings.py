@@ -135,4 +135,4 @@ STATIC_FILE = ''
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGS = 'd05/ex02/logs'
+LOGS = 'ex02/logs'

@@ -9,6 +9,8 @@
 <ul>
     {% for item in history %}
     <li>{{item}}</li>
+    {% empty %}
+    <li>No history</li>
     {% endfor %}
 </ul>
 {% endblock %}

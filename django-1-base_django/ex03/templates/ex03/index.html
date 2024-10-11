@@ -6,13 +6,24 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Exercise 03: Fifty shades of bic</title>
 	<style>
+		table {
+			margin-left: auto;
+			margin-right: auto;
+		}
 		td, th {
 			width: 80px;
 			height: 40px;
-		}
-		td {
 			text-align: center;
+		}
+		td.color {
 			color: white;
+		}
+		h1 {
+			text-align: center;
+		}
+		.div-center {
+			width: 100
+			text-align: center;
 		}
 	</style>
 </head>
@@ -20,6 +31,7 @@
 	<h1>Exercise 03: Fifty shades of bic</h1>
 	<table>
 		<tr>
+			<th>No.</th>
 			<th>Red</th>
 			<th>Green</th>
 			<th>Blue</th>
@@ -27,10 +39,11 @@
 		</tr>
 		{% for item in colors %}
 		<tr>
-			<td style="background-color: {{item.red}};">{{item.red}}</td>
-			<td style="background-color: {{item.green}};">{{item.green}}</td>
-			<td style="background-color: {{item.blue}};">{{item.blue}}</td>
-			<td style="background-color: {{item.black}};">{{item.black}}</td>
+			<td>{{forloop.counter}}</td>
+			<td style="background-color: {{item.red}};" class="color">{{item.red}}</td>
+			<td style="background-color: {{item.green}};" class="color">{{item.green}}</td>
+			<td style="background-color: {{item.blue}};" class="color">{{item.blue}}</td>
+			<td style="background-color: {{item.black}};" class="color">{{item.black}}</td>
 		</tr>
 		{% endfor %}
 	</table>

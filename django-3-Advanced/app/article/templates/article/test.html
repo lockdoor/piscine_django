@@ -5,7 +5,8 @@
     <h2>{{ article.title }}</h2>
     <form method="post">
         {% csrf_token %}
-        <input type="hidden" name="article" value={{article.pk}} >
+        {% comment %} <input type="hidden" name="article" value={{article.pk}} > {% endcomment %}
+        {{form.non_field_errors}}
         <button type="submit">Favourite</button>
     </form>
     <p>{{ article.synopsis }}</p>
@@ -14,4 +15,3 @@
     <p>{{ article.content }}</p>
 </article>
 {% endblock %}
-
