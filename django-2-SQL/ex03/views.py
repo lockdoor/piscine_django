@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from ex01.models import Movies
+from .models import Movies
 import sys
 
 # Create your views here.

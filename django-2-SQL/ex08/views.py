@@ -75,10 +75,10 @@ def populate(request):
 		conn = connect()
 		try:
 			curs = conn.cursor()
-			file = open("../d05/planets.csv", 'r')
+			file = open("d05/planets.csv", 'r')
 			curs.copy_from(file=file, table='ex08_planets', columns=planets_columns, null='NULL')
 			file.close()
-			file = open("../d05/people.csv", 'r')
+			file = open("d05/people.csv", 'r')
 			curs.copy_from(file=file, table='ex08_people', columns=people_columns, null='NULL')
 			file.close()
 			curs.close()

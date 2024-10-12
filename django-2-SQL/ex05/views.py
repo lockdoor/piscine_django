@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from ex01.models import Movies
+from .models import Movies
 from .forms import MovieRemoveForm
-import sys
 
 # Create your views here.
 def populate(request):
