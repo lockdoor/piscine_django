@@ -91,6 +91,8 @@ def populate(request):
 	except Exception as e:
 		return HttpResponse(f'Error: {e}')
 
+
+# should sort by carecter name
 def display(request):
 	try:
 		with connect() as conn:

@@ -48,8 +48,8 @@ class Movies(models.Model):
 	producer = models.CharField(max_length=128)  # 128-byte max, non-null
 	release_date = models.DateField()  # Date, non-null
 	characters = models.ManyToManyField(People)
-	# created = models.DateTimeField(auto_now_add=True)
-	# updated = models.DateTimeField(auto_now=True)
+	created = models.DateTimeField(auto_now_add=True, null=True)
+	updated = models.DateTimeField(auto_now=True, null=True)
 
 	def __str__(self):
 		return self.title

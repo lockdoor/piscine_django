@@ -10,7 +10,7 @@ from django.db.models import Q
 def index(request):
 	try:
 		if Planets.objects.count() == 0:
-			return HttpResponse("No data available, please use the following command line before use:<br>python3 manage.py loaddata ../d05/ex10_initial_data.json")
+			return HttpResponse("No data available, please use the following command line before use:<br>python3 manage.py loaddata d05/ex10_initial_data.json")
 		if request.method == 'POST':
 			form = Mainform(request.POST)
 			if form.is_valid():

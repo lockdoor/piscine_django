@@ -32,11 +32,6 @@ def create_table(conn: extensions.connection, table_name: str):
 	''')
 	conn.commit()
 
-def insert_into(conn: extensions.connection, sql: str):
-	cursor = conn.cursor()
-	cursor.execute(sql)
-	conn.commit()
-
 def init(request):
 	try:
 		conn = connect()
@@ -52,29 +47,38 @@ def init(request):
 	except psycopg2.OperationalError:
 		return HttpResponse("Error: can not connect database")
 
+'''
+It must return a page displaying "OK" for each successful insertion. Otherwise, it
+must display an error message stating the problem.
+'''
 def populate(request):
 	try:
 		conn = connect()
+		feedback:str = ""
 		try:
-			insert_into(conn, 
-			''' \
-			INSERT INTO ex04_movies (title, director, producer, release_date) \
-			VALUES \
-			('The Phantom Menace', 'Geoge Lucus', 'Rick McCallum', '1999-05-19'), \
-			('Attack of the Clones', 'Geoge Lucus', 'Rick McCallum', '2002-05-16'), \
-			('Revenge of the Sith', 'Geoge Lucus', 'Rick McCallum', '2005-05-19'), \
-			('A New Hope', 'Geoge Lucus', 'Gary Kurtz, Rick McCallum', '1977-05-25'), \
-			('The Empire Strikes Back', 'Irvin Kershner', 'Gary Kurtz, Rick McCallum', '1980-05-17'), \
-			('Return of the Jedi', 'Richard Marquand', 'Howard G. Kazanjian, George Lucas, Rick McCallum', '1983-05-25'), \
-			('The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11'); \
-			'''
-			)
-			return HttpResponse('OK\n')
-		except psycopg2.Error as e:
-			conn.rollback()
-			return HttpResponse(f'Error: {e}')
+			datas: list[tuple] = [
+				('The Phantom Menace', 'Geoge Lucus', 'Rick McCallum', '1999-05-19'),
+				('Attack of the Clones', 'Geoge Lucus', 'Rick McCallum', '2002-05-16'),
+				('Revenge of the Sith', 'Geoge Lucus', 'Rick McCallum', '2005-05-19'),
+				('A New Hope', 'Geoge Lucus', 'Gary Kurtz, Rick McCallum', '1977-05-25'),
+				('The Empire Strikes Back', 'Irvin Kershner', 'Gary Kurtz, Rick McCallum', '1980-05-17'),
+				('Return of the Jedi', 'Richard Marquand', 'Howard G. Kazanjian, George Lucas, Rick McCallum', '1983-05-25'),
+				('The Force Awakens', 'J. J. Abrams', 'Kathleen Kennedy, J. J. Abrams, Bryan Burk', '2015-12-11')
+			]
+			cursor = conn.cursor()
+			for data in datas:
+				try:
+					cursor.execute("INSERT INTO ex04_movies (title, director, producer, release_date) VALUES (%s, %s, %s, %s)", data)
+					feedback += f'INSERT {data[0]} OK<br>'
+					conn.commit()
+				except psycopg2.Error as e:
+					conn.rollback()
+					feedback += f'{str(e)}<br>'
+		except Exception as e:
+			feedback = str(e)
 		finally:
 			conn.close()
+			return HttpResponse(feedback)
 
 	except psycopg2.OperationalError:
 		return HttpResponse("Error: can not connect database")
@@ -96,6 +100,8 @@ def display(request):
 	except psycopg2.OperationalError:
 		return HttpResponse("Error: can not connect database")
 
+# render same page
+# no data show no data available
 def remove(request):
 	if request.method == 'POST':
 		form = MovieRemoveForm(request.POST)
@@ -108,10 +114,11 @@ def remove(request):
 					print(f'episode_nb: {episode_nb}', file=sys.stderr)
 					cur.execute(f"DELETE FROM ex04_movies WHERE episode_nb=%s;", (episode_nb,))
 					conn.commit()
-					return redirect('../display/')
+					# return redirect('../display/')
+					form = MovieRemoveForm()
 				except psycopg2.Error as e:
 					conn.rollback()
-					return HttpResponse(f'Error: {e}')
+					# return HttpResponse(f'Error: {e}')
 				finally:
 					conn.close()			
 			except psycopg2.OperationalError:
@@ -120,4 +127,4 @@ def remove(request):
 			return HttpResponse('Form invalid\n')
 	else:
 		form = MovieRemoveForm()
-		return render(request, 'ex04/remove.html', {'form': form})
+	return render(request, 'ex04/remove.html', {'form': form})

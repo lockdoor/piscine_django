@@ -9,10 +9,14 @@
 <body>
     <h2>remove</h2>
     <!-- because html native form can send only 2 method get or post, it not send delete -->
+    {% if form.movie.field.choices %}
     <form method="post">
         {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">
     </form>
+    {% else %}
+        No data available
+    {% endif %}
 </body>
 </html>

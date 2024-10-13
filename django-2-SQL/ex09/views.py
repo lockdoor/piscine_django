@@ -12,7 +12,9 @@ def display(request):
 		
 		planets = Planets.objects.filter(climate__contains='windy').prefetch_related('planet')
 		# Get all related people for all planets
-		people: list[People]= [person for planet in planets for person in planet.planet.all()]
+		people: list[People] = [person for planet in planets for person in planet.planet.all()]
+
+		people.sort(key = lambda person: person.name)
 
 		data: list = []
 		for person in people:
