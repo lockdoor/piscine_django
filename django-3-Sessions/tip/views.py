@@ -34,6 +34,7 @@ def home(request: HttpRequest):
 		'user': request.user,
 		'form': form,
 		'tips': tips,
+		'role': request.session.get('rolename')
 	}
 	return render(request, 'tip/home.html', context)
 
@@ -48,15 +49,17 @@ def create_tip(request):
 		tip.author = request.user
 		# Save the tip (this will also auto-set the date due to auto_now_add=True)
 		tip.save()
-		return redirect('/')
+		return redirect('tip:home')
 
 def signup(request: HttpRequest):
+	if request.user.is_authenticated:
+		return redirect('tip:home')
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save()
 			login(request, user)
-			return redirect('/')
+			return redirect('tip:home')
 	else:
 		form = SignUpForm()
 	context = {
@@ -67,12 +70,14 @@ def signup(request: HttpRequest):
 	return render(request, 'tip/sign.html', context)
 
 def signin(request: HttpRequest):
+	if request.user.is_authenticated:
+		return redirect('tip:home')
 	if request.method == 'POST':
 		form = SignInForm(request, data=request.POST)
 		if form.is_valid():
 			user = form.get_user()
 			login(request, user)
-			return redirect('/')
+			return redirect('tip:home')
 	else:
 		form = SignInForm()
 	context = {
@@ -85,7 +90,7 @@ def signin(request: HttpRequest):
 def signout(request: HttpRequest):
 	if request.user.is_authenticated:
 		logout(request)
-		return redirect('/')
+	return redirect('tip:home')
 
 @require_POST
 @login_required
@@ -102,7 +107,7 @@ def vote(request: HttpRequest):
 	else:
 		return HttpResponseBadRequest("vote type error!!")
 	tip.save()
-	return redirect('/')
+	return redirect('tip:home')
 
 @require_POST
 @login_required
@@ -113,6 +118,6 @@ def remove(request: HttpRequest):
 	# if tip.author == request.user or request.user.groups.filter(name='tip_delete').exists():
 	if tip.author == request.user or request.user.has_perm('tip.delete_tip'):
 		tip.delete()
-		return redirect('/')
+		return redirect('tip:home')
 	else:
 		return HttpResponseForbidden('You not have permission!!')

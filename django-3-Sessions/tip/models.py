@@ -4,6 +4,8 @@ from django.http import HttpRequest
 from django.contrib.auth.models import Permission
 
 # Create your models here.
+
+# Add reputation field to User
 class CustomUser(AbstractUser):
     reputation = models.IntegerField(default=0)
 
@@ -18,6 +20,7 @@ class Tip(models.Model):
 		permissions = [
 			('can_downvote_tip', 'Can downvote tip'),
 		]
+		ordering = ['-date']
 
 	def __str__(self):
 		return self.author.username

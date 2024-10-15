@@ -52,7 +52,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app.middleware.RandomNameMiddleware'
+    'app.middleware.RandomNameMiddleware',
+    'app.middleware.RoleNameMiddleware',
 ]
 
 ROOT_URLCONF = 'app.urls'
@@ -137,5 +138,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 RANDOM_NAME= ['Ramon', 'Dillon', 'Mady', 'Bennett', 'Lurline', 'Elberta', 'Dennison', 'Kelwin', 'Faunie', 'Ranique']
+
+ROLE_NAME= ['Staff Assistant', 'Staff', 'Admin Assistant', 'Admin']
 
 AUTH_USER_MODEL = 'tip.CustomUser'

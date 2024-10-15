@@ -5,7 +5,7 @@
 
 {% if user.is_authenticated %}
 <div class="d-flex justify-content-center">
-  <form method="post" action="{% url 'create_tip' %}">
+  <form method="post" action="{% url 'tip:create_tip' %}">
       {% csrf_token %}
       {% bootstrap_form form %}
       {% bootstrap_button "Create Tip" button_type="submit" button_class="btn-primary" %}

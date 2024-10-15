@@ -9,7 +9,7 @@
       <small>{{tip.date}}</small>
       {% if user.is_authenticated %}
       <small class="d-flex">
-        <form method="post" action="{% url 'remove' %}">
+        <form method="post" action="{% url 'tip:remove' %}">
           {% csrf_token %}
           <input type="hidden" name="tip_id" value="{{ tip.id }}">
           <button type="submit" class="btn p-0 border-0 bg-transparent">
@@ -17,7 +17,7 @@
           </button>
         </form>
         
-        <form method="post" action="{% url 'vote' %}">
+        <form method="post" action="{% url 'tip:vote' %}">
           {% csrf_token %}
           <input type="hidden" name="tip_id" value="{{ tip.id }}">
           <input type="hidden" name="vote_type" value="upvote">
@@ -27,7 +27,7 @@
           <span>{{tip.upvote_count}}</span>
         </form>
 
-        <form method="post" action="{% url 'vote' %}">
+        <form method="post" action="{% url 'tip:vote' %}">
           {% csrf_token %}
           <input type="hidden" name="tip_id" value="{{ tip.id }}">
           <input type="hidden" name="vote_type" value="downvote">
@@ -39,7 +39,15 @@
         
       </small>
       {% else %}
-      <small></small>
+      <small>
+        <a class="btn p-0 border-0 bg-transparent" href={% url 'tip:signin' %}>
+          <i class="bi bi-trash"></i>
+          <i class="bi bi-hand-thumbs-up"></i>
+          <span>{{tip.upvote_count}}</span>
+          <i class="bi bi-hand-thumbs-down"></i>
+          <span>{{tip.downvote_count}}</span>
+        </a>
+      </small>
       {% endif %}
     </div>
   </div>
