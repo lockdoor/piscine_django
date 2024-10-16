@@ -20,9 +20,9 @@ from django.contrib.auth.views import LoginView, LogoutView
 from article.views import RegisterCreateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', include('article.urls')),
-    path('login/', LoginView.as_view(), name='login'),
+    path('login/', LoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', RegisterCreateView.as_view(), name='register')
 ]

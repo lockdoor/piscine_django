@@ -1,13 +1,27 @@
 {% extends 'base.html' %}
 
+{% block title %}<title>{{article}}</title>{% endblock %}
+
 {% block content %}
 <article>
-    <h2>{{ article.title }}</h2>
-    <form method="post">
-        {% csrf_token %}
-        <input type="hidden" name="article" value={{article.pk}} >
-        <button type="submit">Favourite</button>
-    </form>
+    <h2>{{ article }}</h2>
+    {% if user.is_authenticated %}
+
+        {% if is_fav %}
+        <form method="post" action="{% url 'article:remove-favourite' is_fav.pk %}">
+            {% csrf_token %}
+            <button type="submit" value="Confirm">UnFavourite</button>
+            {{form}}
+        </form>
+        {% else %}
+        <form method="post" action="{% url 'article:add-favourite' %}">
+            {% csrf_token %}
+            <button type="submit">Favourite</button>
+            {{form}}
+        </form>
+        {% endif %}
+
+    {% endif %}
     <p>{{ article.synopsis }}</p>
     <p>Author: {{ article.author }}</p>
     <p>Created on: {{ article.created }}</p>

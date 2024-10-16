@@ -1,10 +1,15 @@
 {% extends "base.html" %}
+{% load bootstrap5 %}
+
+{% block title %}<title>Login Page</title>{% endblock %}
 
 {% block content %}
 
+{%comment%}
 {% if form.errors %}
 <p>Your username and password didn't match. Please try again.</p>
 {% endif %}
+{%endcomment%}
 
 {% if next %}
     {% if user.is_authenticated %}
@@ -15,6 +20,7 @@
     {% endif %}
 {% endif %}
 
+{% comment "" %}
 <form method="post" action="{% url 'login' %}">
 {% csrf_token %}
 <table>
@@ -31,8 +37,20 @@
 <input type="submit" value="login">
 <input type="hidden" name="next" value="{{ request.GET.next }}">
 </form>
+{% endcomment %}
 
 {# Assumes you set up the password_reset view in your URLconf #}
 {# <p><a href="{% url 'password_reset' %}">Lost password?</a></p> #}
+
+<h2 class="text-center">Login Page.</h2>
+<div class="container">
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        {% bootstrap_button "Submit" button_type="submit" button_class="btn-primary" %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+    </form>
+</div>
+
 
 {% endblock %}

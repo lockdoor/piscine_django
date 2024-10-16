@@ -11,6 +11,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        ordering = ['-created']
 
 class UserFavouriteArticle(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

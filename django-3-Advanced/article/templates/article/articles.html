@@ -1,37 +1,22 @@
 {% extends 'base.html' %}
 
-{% comment %}
-{% block content %}
-<h1>Articles</h1>
-<ul>
-{% for article in object_list %}
-    <li>
-        <h2><a href="{% url 'article:detail' article.pk %}">{{ article.title }}</a></h2>
-        <ul>
-            <li>author: {{article.author}}</li>
-            <li>synopsis: {{article.synopsis}}</li>
-            <li>created: {{article.created}}</li>
-        </ul>
-    </li>
-{% empty %}
-    <li>No articles yet.</li>
-{% endfor %}
-</ul>
-{% endblock %}
-{% endcomment %}
+{% block title %}<title>Articles</title>{% endblock %}
 
 {% block content %}
 <h1>Articles</h1>
-<table>
+<table class="table table-striped table-hover">
     <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>Synopsis</th>
-        <th>Created</th>
+        <th scope="col">
+            <span lang="th">ชื่อเรื่อง</span>
+            <span lang="en">Title</span>
+        </th>
+        <th scope="col">Author</th>
+        <th scope="col">Synopsis</th>
+        <th scope="col">Created</th>
     </tr>
-    {% for article in object_list %}
+    {% for article in articles %}
     <tr>
-        <td><a href="{% url 'article:detail' article.pk %}">{{ article.title }}</a></td>
+        <td scope="row"><a href="{% url 'article:detail' article.pk %}">{{ article.title }}</a></td>
         <td>{{article.author}}</td>
         <td>{{article.synopsis}}</td>
         <td>{{article.created}}</td>
