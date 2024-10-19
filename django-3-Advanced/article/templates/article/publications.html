@@ -3,7 +3,10 @@
 {% block title %}<title>Publications Page</title>{% endblock %}
 
 {% block content %}
+<div class="d-flex justify-content-between">
 <h2>Publications Page.</h2>
+<a class="btn btn-info" role="button" href="{% url 'article:publish' %}">Create New</a>
+</div>
 <table class="table table-striped table-hover">
     <tr>
         <th>Title</th>

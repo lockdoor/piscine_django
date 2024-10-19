@@ -18,14 +18,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth.views import LoginView, LogoutView
 from article.views import RegisterCreateView
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
-    # path('admin/', admin.site.urls),
-    path('', include('article.urls')),
+    path('admin/', admin.site.urls),
+    # path('', include('article.urls')),
     path('login/', LoginView.as_view(redirect_authenticated_user=True), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('register/', RegisterCreateView.as_view(), name='register')
 ]
+
+urlpatterns += i18n_patterns (
+    path('', include('article.urls')),
+)
 
 '''
 for infomation of LoginView

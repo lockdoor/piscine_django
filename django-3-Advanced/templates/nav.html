@@ -1,8 +1,10 @@
+{% load i18n %}
 {% load bootstrap5 %}
+
 <nav class="navbar navbar-dark bg-primary navbar-expand-sm bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">
-        Hello {{user}}
+        {% trans "Hello" %} {{user}}
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"><i class="bi bi-list"></i></span>
@@ -11,51 +13,52 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url "article:home" %}">Home</a>
+            <a class="nav-link active" aria-current="page" href="{% url "article:home" %}">{% trans "Home" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url "article:articles" %}">Articles</a>
+            <a class="nav-link active" aria-current="page" href="{% url "article:articles" %}">{% trans "Article" %}</a>
           </li>
+
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url "article:publications" %}">Publications</a>
+            <a class="nav-link active" aria-current="page" href="{% url "article:publications" %}">{% trans "Publication" %}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="{% url "article:favourites" %}">Favourites</a>
+            <a class="nav-link active" aria-current="page" href="{% url "article:favourites" %}">{% trans "Favourite" %}</a>
           </li>
           {% endif %}
-          <!-- <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {% trans "Language" %}
             </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for lang in languages %}
+              <a class="dropdown-item" href="/{{lang.code}}/">{{lang.code}}</a>
+              {% endfor %}
+            </div>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-          </li> -->
         </ul>
         
         {% if user.is_authenticated %}
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{% url 'logout' %}">Signout</a>
+            <a class="nav-link" aria-current="page" href="{% url 'logout' %}">{% trans "Signout" %}</a>
           </li>
         </ul>
         {% else %}
         <form method="post" action="{% url 'article:nav-login' %}">
           {% csrf_token %}
           {% bootstrap_form login_form %}
-          {% bootstrap_button "Login" button_type="submit" button_class="btn-primary" %}
-          <a href="{% url 'register' %}" class="btn btn-info" role="button">Signup</a>
+          {% trans "Login" as login_text %} 
+          {% bootstrap_button login_text button_type="submit" button_class="btn-primary" %}
+          <a href="{% url "register" %}" class="btn btn-info" role="button">{% trans "Signup" %}</a>
           <input type="hidden" name="next" value="{% url 'article:home' %}">
         </form>
         {% endif %}
-        <!-- <p>Hello User!</p> -->
       </div>
     </div>
   </nav>

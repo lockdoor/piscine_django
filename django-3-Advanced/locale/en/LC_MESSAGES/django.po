@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-18 12:48+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: app/settings.py:133
+msgid "English"
+msgstr ""
+
+#: app/settings.py:134
+msgid "Thailand"
+msgstr ""
+
+#: article/templates/article/articles.html:4
+#: article/templates/article/articles.html:7 templates/nav.html:19
+msgid "Article"
+msgstr ""
+
+#: article/templates/article/articles.html:10
+msgid "Title"
+msgstr ""
+
+#: article/templates/article/articles.html:11
+msgid "Author"
+msgstr ""
+
+#: article/templates/article/articles.html:12
+msgid "Synopsis"
+msgstr ""
+
+#: article/templates/article/articles.html:13
+msgid "Created"
+msgstr ""
+
+#: templates/nav.html:7
+msgid "Hello"
+msgstr ""
+
+#: templates/nav.html:16
+msgid "Home"
+msgstr ""
+
+#: templates/nav.html:24
+msgid "Publication"
+msgstr ""
+
+#: templates/nav.html:27
+msgid "Favourite"
+msgstr ""
+
+#: templates/nav.html:33
+msgid "Language"
+msgstr ""
+
+#: templates/nav.html:49
+msgid "Signout"
+msgstr ""
+
+#: templates/nav.html:56
+msgid "Login"
+msgstr ""
+
+#: templates/nav.html:58
+msgid "Signup"
+msgstr ""

@@ -1,5 +1,5 @@
 from django.urls import reverse, reverse_lazy
-# from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseForbidden
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -87,6 +87,12 @@ class RegisterCreateView(CreateView):
     template_name = 'registration/register.html'
     success_url = settings.LOGIN_URL
 
+    def dispatch(self, request, *args, **kwargs):
+        # If the user is authenticated, redirect them to a different page
+        if request.user.is_authenticated:
+            return redirect('article:home')  # You can change 'home' to any other URL name
+        return super().dispatch(request, *args, **kwargs)
+
 class PublishCreateView(LoginRequiredMixin, CreateView):
     model = Article
     fields = ['title', 'synopsis', 'content']
@@ -98,19 +104,13 @@ class PublishCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user  # Assign the current user as the author
         return super().form_valid(form)
 
-class TestDetailView(DetailView, FormView):
-    model = Article
-    template_name = 'article/test.html'
-    context_object_name = 'article'
-    form_class = AddFavouritForm
-
 '''
 must handle in ex02
 '''
 class AddFavouriteCreateView(LoginRequiredMixin, CreateView):
     model = UserFavouriteArticle
     fields = ['article']
-    # template_name = 'article/detail.html'
+    template_name = 'article/detail.html'
     # success_url = '/favourites'
 
     # Override the form_valid method to assign the author
