@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}<title>Account Page.</title>{% endblock %}
+
+{% block content %}
+
+<script src="{% static 'account/index.js' %}" type="module"></script>
+<script src="{% static 'chat/index.js' %}" type="module"></script>
+
+{% csrf_token %}
+{% if user.is_authenticated %}
+<div id="main">
+    <account-component data-username={{ user }}></account-component>
+<div>
+{% else %}
+<div id="main">
+    <connect-component></connect-component>
+</div>
+{% endif %}
+
+{% endblock %}
