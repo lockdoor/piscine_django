@@ -28,13 +28,13 @@ export class ChatComponent extends HTMLElement{
 						height: 75%;
 					}
 					.h-sm-25 {
-						height: 15%;
+						height: 25%;
 					}					
 				}
 			</style>
 			<div class="row h-100 p-3 pb-5">
 				<!-- Chat Box -->
-				<div class="col-sm-8 h-sm-75 d-flex flex-column ">
+				<div class="col-sm-8 h-sm-75 d-flex flex-column mb-3">
 					<!-- Chat Messages -->	
 					<div class="border border-info rounded-2 flex-grow-1 d-flex flex-column justify-content-end overflow-hidden mb-2 px-2">
 						<div id="chatMessages" class="w-100 overflow-auto pt-2">
@@ -53,7 +53,9 @@ export class ChatComponent extends HTMLElement{
 				</div>
 
 				<!-- for show list of user -->
-				<div id="userList" class="col-sm-4 h-sm-25 border border-danger d-flex flex-column rounded-2 overflow-auto"></div>
+				<div class="h-sm-25 col-sm-4 px-2">
+				<div id="userList" class="h-100 p-2 border border-danger d-flex flex-column rounded-2 overflow-auto"></div>
+				</div>
 			</div>
 		`
 	}
