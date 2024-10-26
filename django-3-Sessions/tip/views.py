@@ -115,8 +115,11 @@ def vote(request: HttpRequest):
 def remove(request: HttpRequest):
 	tip_id = request.POST.get('tip_id')
 	tip = get_object_or_404(Tip, id=tip_id)
-	# if tip.author == request.user or request.user.groups.filter(name='tip_delete').exists():
 	if tip.author == request.user or request.user.has_perm('tip.delete_tip'):
+		if tip.downvote.filter(pk=request.user.pk).exists():
+			tip.set_downvote(request)
+		if tip.upvote.filter(pk=request.user.pk).exists():
+			tip.set_upvote(request)
 		tip.delete()
 		return redirect('tip:home')
 	else:
