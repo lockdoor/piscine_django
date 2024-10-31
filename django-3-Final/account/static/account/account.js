@@ -69,12 +69,12 @@ export class AccountComponent extends HTMLElement{
 		const active = this.shadowRoot.querySelector('a.text-primary')
 		const chatComponent = `<chat-component data-channel=${event.target.dataset.channel} data-username=${this.dataset.username}></chat-component>`
 		if (!active) {
-			event.target.classList.add('text-primary')
+			event.target.classList.add('text-primary', 'fw-bold')
 			this.shadowRoot.getElementById("chatroom").innerHTML=chatComponent
 		}
 		else if (event.target != active) {
-			active.classList.remove('text-primary')
-			event.target.classList.add('text-primary')
+			active.classList.remove('text-primary', 'fw-bold')
+			event.target.classList.add('text-primary', 'fw-bold')
 			this.shadowRoot.getElementById("chatroom").innerHTML=chatComponent
 		}
 	}
@@ -98,6 +98,6 @@ export class AccountComponent extends HTMLElement{
 		document.title = this.title
 
 		//debug
-		this.shadowRoot.querySelector("[data-channel=channel_2]").click()
+		// this.shadowRoot.querySelector("[data-channel=channel_2]").click()
 	}
 }

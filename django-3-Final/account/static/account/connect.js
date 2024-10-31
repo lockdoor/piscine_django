@@ -9,8 +9,10 @@ export class ConnectComponent extends HTMLElement{
 	template(){
 		return `
 		  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
-			<p>Connect Component</p>
-			<form id="connectForm">
+		  <div class="vh-100 d-flex align-items-center justify-content-center">
+			<!--p>Connect Component</p-->
+			<form id="connectForm" class="w-75">
+				<p  class="fs-1">Connect to Chatroom</p>
 				${document.querySelector('[name=csrfmiddlewaretoken]').outerHTML}
 				<div class="mb-3">
 					<label for="usernameInput" class="form-label">Username: </label>
@@ -22,7 +24,9 @@ export class ConnectComponent extends HTMLElement{
 				</div>
 				<input type="submit" value="connect" role="button" class="btn btn-primary" >
 				<p id="errorList" class="text-danger"></p>
+				
 			</form>
+		  </div>
 		`
 	}
 

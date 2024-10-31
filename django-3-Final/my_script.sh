@@ -10,4 +10,4 @@ fi
 source $HOME/venv$PWD/bin/activate
 python3 -m pip install --upgrade pip
 python3 -m pip install -r requirement.txt
-
+python3 manage.py runserver

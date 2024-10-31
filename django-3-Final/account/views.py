@@ -7,6 +7,7 @@ from django.middleware.csrf import get_token
 # Create your views here.
 
 class ConnectLoginView(LoginView):
+	redirect_authenticated_user=True
 	def form_invalid(self, form):
 		return JsonResponse({
 			'success': False,
@@ -25,7 +26,13 @@ class ConnectLoginView(LoginView):
 		}, safe=False)
 
 class CustomLogoutView(View):
-	def post(self, request, *args, **kwargs):
+	def post(self, request, *args, **kwargs):		
+		if not request.user.is_authenticated():
+			return JsonResponse({
+				'success': False,
+				'errors': "can not logout user is not authenticated"
+			}, safe=False)
+		
 		# Log the user out
 		logout(request)
 
