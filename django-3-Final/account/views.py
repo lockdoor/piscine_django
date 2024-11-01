@@ -27,7 +27,7 @@ class ConnectLoginView(LoginView):
 
 class CustomLogoutView(View):
 	def post(self, request, *args, **kwargs):		
-		if not request.user.is_authenticated():
+		if not request.user.is_authenticated:
 			return JsonResponse({
 				'success': False,
 				'errors': "can not logout user is not authenticated"
